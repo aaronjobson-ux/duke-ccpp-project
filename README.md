@@ -1,21 +1,75 @@
 # duke-ccpp-project
+
 My analysis and modeling work for the Duke ML Product Management course using the CCPP dataset.
-I built regression models to predict a power plant’s hourly energy output using environmental data. By applying an ML Product Management lens, I focused on turning technical model evaluations into actionable operational decisions instead of just minimizing error metrics. Ultimately, this work highlights how environmental conditions influence turbine efficiency, anchoring the model's value in smarter planning and operational decision-making.
+
+I built regression models to predict a power plant’s hourly energy output using environmental data. Applying an ML Product Management lens, I focused on turning technical model evaluations into actionable operational decisions rather than simply minimizing error metrics. Ultimately, this work highlights how environmental conditions influence turbine efficiency, anchoring the model’s value in smarter planning and operational decision‑making.
+
 Combined‑cycle power plants experience unpredictable variations in hourly energy output due to fluctuating environmental conditions like temperature and humidity. Anticipating these shifts is critical for optimizing turbine efficiency, planning production, and allocating resources effectively. Today, operators lack a proactive way to forecast performance, leaving decision‑makers reactive and exposing the plant to avoidable operational inefficiencies that machine learning can resolve.
+
+---
+
 Dataset Summary & Product Engineering Profile
-The Combined Cycle Power Plant (CCPP) dataset includes five continuous variables that describe environmental conditions affecting turbine performance. The target variable, net hourly electrical energy output (PE), is predicted using four standard telemetry inputs: Ambient Temperature (AT), Exhaust Vacuum (V), Ambient Pressure (AP), and Relative Humidity (RH).From a product and deployment standpoint, this dataset has a strong engineering profile that makes it highly viable for a production ML system:
-• Low Cost & High Availability: All four inputs are already collected through existing plant sensors, requiring no new hardware or instrumentation.
-• Near‑Real‑Time Streamability: These metrics represent continuously measured physical states, enabling low‑latency ingestion and responsive hourly forecasting.
-• Collinearity Risk: Environmental variables are naturally interdependent (e.g., temperature influencing vacuum and humidity). The pipeline must mitigate this correlation to maintain stable performance and preserve interpretability for stakeholders.
-• Simple Data Validation: Because the inputs are continuous numerical variables with well‑defined physical limits, validation schemas are straightforward and reduce the risk of silent production failures.
+
+The Combined Cycle Power Plant (CCPP) dataset includes five continuous variables that describe environmental conditions affecting turbine performance. The target variable, net hourly electrical energy output (PE), is predicted using four standard telemetry inputs:
+
+• Ambient Temperature (AT)
+• Exhaust Vacuum (V)
+• Ambient Pressure (AP)
+• Relative Humidity (RH)
+
+
+From a product and deployment standpoint, this dataset has a strong engineering profile that makes it highly viable for a production ML system:
+
+• Low Cost & High Availability — All four inputs are already collected through existing plant sensors, requiring no new hardware or instrumentation.
+• Near‑Real‑Time Streamability — These metrics represent continuously measured physical states, enabling low‑latency ingestion and responsive hourly forecasting.
+• Collinearity Risk — Environmental variables are naturally interdependent (e.g., temperature influencing vacuum and humidity). The pipeline must mitigate this correlation to maintain stable performance and preserve interpretability for stakeholders.
+• Simple Data Validation — Because the inputs are continuous numerical variables with well‑defined physical limits, validation schemas are straightforward and reduce the risk of silent production failures.
+
+
+---
+
 EDA Summary
-Exploratory Data Analysis (EDA) confirms that all four environmental inputs operate within stable, physically constrained ranges with zero missing values or anomalies — a strong indicator of high‑quality industrial telemetry. The dataset shows clear collinearity among inputs, particularly ambient temperature, vacuum, and humidity, reflecting natural environmental interdependence. Ambient Temperature (AT) exhibits the strongest negative correlation with net hourly energy output (PE), identifying it as the primary driver of turbine efficiency loss.From a product perspective, these predictable, continuous relationships validate the dataset’s suitability for stable regression modeling and proactive operational forecasting. The strength of the temperature signal also supports establishing a simple AT‑only baseline model before introducing multivariate approaches. Additionally, the observed collinearity informs model selection toward architectures that handle interdependent features effectively (e.g., regularized regression or tree‑based models). Finally, the absence of missing values and outliers implies a straightforward data SLA, reducing the need for complex validation or imputation logic in production.
+
+Exploratory Data Analysis (EDA) confirms that all four environmental inputs operate within stable, physically constrained ranges with zero missing values or anomalies — a strong indicator of high‑quality industrial telemetry. The dataset shows clear collinearity among inputs, particularly ambient temperature, vacuum, and humidity, reflecting natural environmental interdependence.
+
+Ambient Temperature (AT) exhibits the strongest negative correlation with net hourly energy output (PE), identifying it as the primary driver of turbine efficiency loss.
+
+From a product perspective, these predictable, continuous relationships validate the dataset’s suitability for stable regression modeling and proactive operational forecasting. The strength of the temperature signal also supports establishing a simple AT‑only baseline model before introducing multivariate approaches. Additionally, the observed collinearity informs model selection toward architectures that handle interdependent features effectively (e.g., regularized regression or tree‑based models). Finally, the absence of missing values and outliers implies a straightforward data SLA, reducing the need for complex validation or imputation logic in production.
+
+---
+
 Modeling Approach
-The modeling strategy follows a product‑first workflow designed to balance interpretability, operational stability, and predictive performance. I began with a simple baseline model using only Ambient Temperature (AT), the strongest single driver of turbine efficiency loss identified during EDA. This establishes a transparent benchmark and ensures that any added model complexity delivers meaningful incremental value.To capture the combined effects of all four environmental inputs, I developed multivariate models. Because EDA revealed strong collinearity among features, the pipeline prioritizes architectures that handle interdependent telemetry without inflating variance — specifically regularized linear models (Ridge and Lasso) and tree‑based methods. These approaches offer a practical balance between interpretability for operators and robustness under correlated environmental conditions.Model viability was assessed through an operational lens. Beyond standard error metrics, each architecture was evaluated for stability across environmental fluctuations, resilience to sensor noise and edge‑case weather conditions, and suitability for live production tracking. Ultimately, the selected model delivered a meaningful improvement over the AT‑only baseline while maintaining low inferential latency — a requirement for hourly forecasting workflows. Maintaining explainability was also a core product requirement, ensuring operators can understand why the model produces a given prediction through feature coefficients or importance plots.
+
+The modeling strategy follows a product‑first workflow designed to balance interpretability, operational stability, and predictive performance.
+
+I began with a simple baseline model using only Ambient Temperature (AT), the strongest single driver of turbine efficiency loss identified during EDA. This establishes a transparent benchmark and ensures that any added model complexity delivers meaningful incremental value.
+
+To capture the combined effects of all four environmental inputs, I developed multivariate models. Because EDA revealed strong collinearity among features, the pipeline prioritizes architectures that handle interdependent telemetry without inflating variance — specifically regularized linear models (Ridge and Lasso) and tree‑based methods. These approaches offer a practical balance between interpretability for operators and robustness under correlated environmental conditions.
+
+Model viability was assessed through an operational lens. Beyond standard error metrics, each architecture was evaluated for stability across environmental fluctuations, resilience to sensor noise and edge‑case weather conditions, and suitability for live production tracking. Ultimately, the selected model delivered a meaningful improvement over the AT‑only baseline while maintaining low inferential latency — a requirement for hourly forecasting workflows. Maintaining explainability was also a core product requirement, ensuring operators can understand why the model produces a given prediction through feature coefficients or importance plots.
+
+---
+
 Evaluation
-Model performance was evaluated using standard regression metrics (MAE, RMSE, and R²) and product‑driven operational criteria, comparing multivariate models against an Ambient Temperature (AT) baseline. While the AT‑only baseline captured the dominant temperature‑driven efficiency trend, it left substantial unexplained variance and served as a transparent benchmark for measuring incremental value.Multivariate models delivered significant improvements by integrating vacuum, pressure, and humidity data. Regularized linear models (Ridge/Lasso) mitigated variance inflation caused by feature collinearity, while tree‑based methods captured nonlinear environmental interactions. Ultimately, the selected model — a regularized Ridge regression — achieved a 15% reduction in RMSE and a 10% lift in R² relative to the baseline while maintaining an inferential latency under 50ms, meeting the SLA required for hourly forecasting workflows.Beyond raw error metrics, evaluation prioritized operational stability: consistency across environmental fluctuations, resilience to sensor noise and edge‑case weather conditions, and reliability under real‑time telemetry streams. Interpretability was also a core requirement for operator adoption, supported through clear feature coefficients and importance rankings that explain why the model produces a given prediction.
+
+Model performance was evaluated using standard regression metrics (MAE, RMSE, and R²) and product‑driven operational criteria, comparing multivariate models against an Ambient Temperature (AT) baseline. While the AT‑only baseline captured the dominant temperature‑driven efficiency trend, it left substantial unexplained variance and served as a transparent benchmark for measuring incremental value.
+
+Multivariate models delivered significant improvements by integrating vacuum, pressure, and humidity data. Regularized linear models (Ridge/Lasso) mitigated variance inflation caused by feature collinearity, while tree‑based methods captured nonlinear environmental interactions.
+
+Ultimately, the selected model — a regularized Ridge regression — achieved a 15% reduction in RMSE and a 10% lift in R² relative to the baseline while maintaining an inferential latency under 50ms, meeting the SLA required for hourly forecasting workflows.
+
+Beyond raw error metrics, evaluation prioritized operational stability: consistency across environmental fluctuations, resilience to sensor noise and edge‑case weather conditions, and reliability under real‑time telemetry streams. Interpretability was also a core requirement for operator adoption, supported through clear feature coefficients and importance rankings that explain why the model produces a given prediction.
+
+---
+
 Product Value
-This model drives operational cost savings, grid reliability, and production predictability by converting ambient environmental telemetry into accurate hourly turbine energy‑output forecasts. By replacing reactive adjustments with proactive insight, the system strengthens four high‑impact operational workflows:• Smarter Production Planning — Predicts efficiency drops before they occur, enabling optimized scheduling and reducing reliance on conservative safety buffers.
+
+This model drives operational cost savings, grid reliability, and production predictability by converting ambient environmental telemetry into accurate hourly turbine energy‑output forecasts. By replacing reactive adjustments with proactive insight, the system strengthens four high‑impact operational workflows:
+
+• Smarter Production Planning — Predicts efficiency drops before they occur, enabling optimized scheduling and reducing reliance on conservative safety buffers.
 • Resource Optimization — Aligns expected output with precise fuel allocation, staffing, and maintenance windows to minimize operational waste.
 • Grid & Operational Stability — Provides early visibility into climate‑driven performance swings, reducing the risk of unexpected shortfalls or over‑generation.
-• Low‑Friction Integration — Uses existing ambient sensors and maintains sub‑50ms inferential latency, allowing seamless deployment into current monitoring dashboards with minimal engineering overhead.Ultimately, the model translates abstract machine‑learning metrics into tangible improvements in plant predictability, operational stability, and cost efficiency — delivering a practical, production‑ready ML capability aligned with real‑world energy operations.
+• Low‑Friction Integration — Uses existing ambient sensors and maintains sub‑50ms inferential latency, allowing seamless deployment into current monitoring dashboards with minimal engineering overhead.
+
+
+Ultimately, the model translates abstract machine‑learning metrics into tangible improvements in plant predictability, operational stability, and cost efficiency — delivering a practical, production‑ready ML capability aligned with real‑world energy operations.
