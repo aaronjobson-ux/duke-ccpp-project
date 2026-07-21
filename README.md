@@ -82,7 +82,46 @@ This model drives operational cost savings, grid reliability, and production pre
 • Low‑Friction Integration — Uses existing ambient sensors and maintains sub‑50ms inferential latency, allowing seamless deployment into current monitoring dashboards with minimal engineering overhead.
 
 
+ 
 Ultimately, the model translates abstract machine‑learning metrics into tangible improvements in plant predictability, operational stability, and cost efficiency — delivering a practical, production‑ready ML capability aligned with real‑world energy operations.
+Future Work & Operational Extensions
+
+To maximize real‑time impact and plant reliability, the forecasting framework can be extended across three core pillars:
+
+---
+
+1. Model & Pipeline Architecture
+
+• Advanced Modeling — Benchmark Gradient Boosted Decision Trees (GBDT) and Elastic Net against baseline models to capture non‑linear environmental interactions while preserving interpretability.
+• Feature Expansion — Incorporate operational telemetry such as turbine load, fuel‑mix ratios, and diurnal cycles to boost predictive power beyond weather variables alone.
+• Real‑Time Streaming Infrastructure — Deploy via Kafka and FastAPI to enable low‑latency, continuous inference, real‑time alerting, and automated risk scoring.
+• Model Governance & Drift Detection — Implement automated data and concept drift checks (e.g., Evidently AI) to detect performance degradation driven by sensor failure or shifting climate baselines.
 
 
-Ultimately, the model translates abstract machine‑learning metrics into tangible improvements in plant predictability, operational stability, and cost efficiency — delivering a practical, production‑ready ML capability aligned with real‑world energy operations.
+---
+
+2. Operator Experience & Decision Support
+
+• Interactive Dashboards — Build intuitive UI components displaying real‑time efficiency forecasts, uncertainty bounds, and actionable maintenance recommendations.
+• Scenario Engine — Allow engineers to simulate extreme operational and environmental conditions (e.g., heatwaves, humidity spikes) to proactively plan dispatch strategies.
+
+
+---
+
+3. Real‑Time Explainability Layer
+
+To build operator trust and accelerate adoption, explainability should evolve from a static post‑hoc analysis into an active operational layer:
+
+• Granular Feature Attribution — Integrate SHAP/LIME to generate instant, per‑prediction breakdowns of local feature contributions.
+• Natural Language Narratives — Translate mathematical feature contributions into intuitive, plant‑floor messaging (e.g., “High ambient humidity reduced output by 4.2 MW this hour”).
+• Explainability‑Driven Audits & Alerts — Trigger operational flags when the model’s reasoning strays from historical physical norms, helping identify early‑stage sensor degradation or unmodeled plant anomalies.
+
+
+---
+
+Key Improvements Made
+
+• Consolidated duplicate concepts into a unified Scenario Engine.
+• Organized Future Work into clear structural categories for enterprise readability.
+• Strengthened technical terminology (uncertainty bounds, concept drift, feature attribution).
+• Preserved your strong concluding thesis while removing redundant transitions.
