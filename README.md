@@ -7,41 +7,49 @@
 
 # ⚡ Combined Cycle Power Plant Forecasting (Duke MLPM)
 
-My analysis and modeling work for the Duke ML Product Management course using the CCPP dataset. This project demonstrates how machine learning can transform raw environmental telemetry into action[...]
+My analysis and modeling work for the Duke ML Product Management course using the CCPP dataset. This project demonstrates how machine learning can transform raw environmental telemetry into actionable, low‑latency energy forecasts for operational decision support in combined‑cycle power plants.
 
 ---
 
 ## 🧾 Abstract
 
-This project develops an interpretable machine‑learning forecasting system for predicting hourly electrical output in Combined Cycle Power Plants (CCPP) using ambient environmental telemetry. Ap[...]
+This project develops an interpretable machine‑learning forecasting system for predicting hourly electrical output in Combined Cycle Power Plants (CCPP) using ambient environmental telemetry. Applied through a product‑management lens, the workflow combines exploratory data analysis, baseline benchmarking, multivariate modeling, and explainability validation to identify a production‑ready forecasting approach. Results show measurable gains in predictive accuracy and reliability versus a single‑feature baseline, while maintaining transparent model behavior and sub‑50ms inference latency suitable for real‑time deployment.
 
 ---
 
 ## 🌐 Executive Summary
 
-Combined‑cycle power plants experience hourly fluctuations in energy output driven by environmental conditions such as temperature, pressure, humidity, and vacuum. Operators currently respond re[...]
+Combined‑cycle power plants experience hourly fluctuations in energy output driven by environmental conditions such as temperature, pressure, humidity, and vacuum. Operators currently respond reactively, leading to inefficiencies in load balancing, maintenance planning, and fuel usage.
 
-This project builds a regression‑based forecasting system that converts ambient telemetry into accurate hourly output predictions. The model is designed through an ML Product Management lens —[...]
+This project builds a regression‑based forecasting system that converts ambient telemetry into accurate hourly output predictions. The model is designed through an ML Product Management lens — prioritizing deployment practicality, interpretability, and operational trust alongside predictive performance.
 
 ---
 
 ## 📘 Project Summary
 
-This project applies a product‑first ML workflow to the Combined Cycle Power Plant (CCPP) dataset. The goal is not only to build accurate regression models, but to demonstrate how ML can solve r[...]
+This project applies a product‑first ML workflow to the Combined Cycle Power Plant (CCPP) dataset. The goal is not only to build accurate regression models, but to demonstrate how ML can solve real operational constraints under production‑grade requirements.
 
-Environmental variables such as temperature, pressure, humidity, and vacuum meaningfully influence turbine efficiency. By modeling these relationships, the system provides proactive insight into e[...]
+Environmental variables such as temperature, pressure, humidity, and vacuum meaningfully influence turbine efficiency. By modeling these relationships, the system provides proactive insight into energy output variation, enabling operators to optimize generation schedules and reduce performance volatility.
 
-Through structured EDA, baseline modeling, multivariate regression, and operational evaluation, the final model delivers measurable improvements in predictive accuracy while meeting real‑world c[...]
+Through structured EDA, baseline modeling, multivariate regression, and operational evaluation, the final model delivers measurable improvements in predictive accuracy while meeting real‑world constraints in latency, explainability, and deployment readiness.
 
 ---
 
 ## 🚀 Frontier AI Strategy
 
-Frontier AI represents a shift from isolated model experimentation to orchestrated, enterprise‑grade intelligence. Modern AI systems—especially those built on Microsoft's Frontier Transformation framework—operate across multiple model tiers, routing tasks to the model that best fits the product's latency, interpretability, and complexity requirements. Fast models support real‑time agentic interactions, versatile models handle multi‑step reasoning, and high‑capacity models address deep analytical workloads. This multi‑model orchestration ensures that AI remains cost‑efficient, trustworthy, and aligned with operational constraints.
+Frontier AI represents a shift from isolated model experimentation to orchestrated, enterprise‑grade intelligence. Modern AI systems—especially those built on Microsoft's Frontier Transformation model—prioritize strategic model routing, where each task is matched to the optimal model based on cost, latency, interpretability, and business context.
 
-This project adopts the same philosophy. Instead of selecting the most complex model available, the forecasting system uses Ridge regression to meet real‑world industrial requirements: low‑latency inference, transparent reasoning for operator trust, stability under environmental collinearity, and resilience to sensor noise. These constraints mirror the expectations outlined in Microsoft's Frontier AI strategy, where customers demand AI systems that are governed, repeatable, secure, and capable of delivering measurable outcomes rather than experimental pilots.
+This project adopts the same philosophy. Instead of selecting the most complex model available, the forecasting system uses Ridge regression to meet real‑world industrial requirements: low‑latency inference, coefficient stability under multicollinearity, and transparent explainability for operational decision‑makers.
 
-By aligning with Frontier AI principles, this project demonstrates how practical machine‑learning products can be built using model selection strategies that prioritize operational feasibility over raw complexity. The result is a forecasting system that reflects the same architectural logic used in modern copilots and agents—routing tasks to the model tier that best fits the product's needs, stakeholder expectations, and deployment environment.
+By aligning with Frontier AI principles, this project demonstrates how practical machine‑learning products can be built using model selection strategies that prioritize operational feasibility over theoretical complexity.
+
+## 📐 Ridge Regression Justification
+
+Ridge regression was selected as the primary forecasting model because it best satisfies the operational requirements of Combined Cycle Power Plant (CCPP) systems. In industrial forecasting, model selection must optimize not only predictive performance, but also interpretability, inference speed, and robustness under noisy, correlated inputs. CCPP features such as ambient temperature, pressure, humidity, and exhaust vacuum exhibit substantial multicollinearity. Ridge regression addresses this directly through L2 regularization, which shrinks coefficient magnitude and reduces variance, resulting in more stable and reliable predictions.
+
+This stability is critical in plant operations, where operators depend on consistent forecasts for load scheduling and efficiency control. Compared with higher‑complexity alternatives—such as ensemble trees or neural networks—Ridge regression preserves transparent linear relationships between inputs and output, enabling straightforward explanation with SHAP values and supporting operational trust. Its low computational overhead also ensures rapid inference, aligning with the real‑time requirements of energy production systems.
+
+This choice reflects a core ML Product Management principle: the best model is the one that fits product and deployment constraints, not necessarily the one with the highest benchmark accuracy. As with modern Frontier AI routing strategies, model tier should match task requirements across latency, interpretability, and implementation feasibility. Ridge regression provides the best balance of these constraints for industrial power prediction, making it the most practical and trustworthy model for this forecasting pipeline
 
 ---
 
@@ -60,7 +68,7 @@ cd duke-ccpp-project
 
 ## 📊 Dataset Summary & Product Engineering Profile
 
-The CCPP dataset includes five continuous variables describing environmental conditions affecting turbine performance. The target variable, net hourly electrical energy output (PE), is predicted u[...]
+The CCPP dataset includes five continuous variables describing environmental conditions affecting turbine performance. The target variable, net hourly electrical energy output (PE), is predicted using:
 
 - Ambient Temperature (AT)  
 - Exhaust Vacuum (V)  
