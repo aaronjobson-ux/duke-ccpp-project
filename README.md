@@ -7,31 +7,44 @@
 
 # ⚡ Combined Cycle Power Plant Forecasting (Duke MLPM)
 
-My analysis and modeling work for the Duke ML Product Management course using the CCPP dataset. This project demonstrates how machine learning can transform raw environmental telemetry into actionable operational intelligence for energy production teams.
+My analysis and modeling work for the Duke ML Product Management course using the CCPP dataset. This project demonstrates how machine learning can transform raw environmental telemetry into actionable forecasting intelligence for industrial energy operations.
 
 ---
 
 ## 🌐 Executive Summary
 
-Combined‑cycle power plants experience hourly fluctuations in energy output driven by environmental conditions such as temperature, pressure, humidity, and vacuum. Operators currently respond reactively to these shifts, creating inefficiencies in production planning, fuel allocation, and grid stability.
+Combined‑cycle power plants experience hourly fluctuations in energy output driven by environmental conditions such as temperature, pressure, humidity, and vacuum. Operators currently respond reactively, often after efficiency has already declined.
 
-This project builds a regression‑based forecasting system that converts ambient telemetry into accurate hourly output predictions. The model is designed through an ML Product Management lens — prioritizing interpretability, operational stability, low‑latency inference, and real‑world decision support. The result is a production‑ready forecasting capability that improves plant predictability, reduces waste, and strengthens grid reliability.
+This project builds a regression‑based forecasting system that converts ambient telemetry into accurate hourly output predictions. The model is designed through an ML Product Management lens — balancing predictive performance, interpretability, and operational feasibility for plant deployment.
 
 ---
 
 ## 📘 Project Summary
 
-This project applies a product‑first ML workflow to the Combined Cycle Power Plant (CCPP) dataset. The goal is not only to build accurate regression models, but to demonstrate how ML can solve real operational challenges inside industrial energy systems.
+This project applies a product‑first ML workflow to the Combined Cycle Power Plant (CCPP) dataset. The goal is not only to build accurate regression models, but to demonstrate how ML can solve real operational challenges in energy forecasting.
 
-Environmental variables such as temperature, pressure, humidity, and vacuum meaningfully influence turbine efficiency. By modeling these relationships, the system provides proactive insight into expected hourly output — enabling smarter scheduling, resource optimization, and more stable grid operations.
+Environmental variables such as temperature, pressure, humidity, and vacuum meaningfully influence turbine efficiency. By modeling these relationships, the system provides proactive insight into energy output before degradation occurs.
 
-Through structured EDA, baseline modeling, multivariate regression, and operational evaluation, the final model delivers measurable improvements in predictive accuracy while meeting real‑world constraints like low latency, interpretability, and sensor noise resilience.
+Through structured EDA, baseline modeling, multivariate regression, and operational evaluation, the final model delivers measurable improvements in predictive accuracy while meeting real‑world constraints such as low‑latency inference and model transparency.
+
+---
+
+## 🔧 How to Reproduce This Project
+
+Follow these steps to fully reproduce the analysis, modeling pipeline, and evaluation results from this project.
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/aaronjobson-ux/duke-ccpp-project.git
+cd duke-ccpp-project
+```
 
 ---
 
 ## 📊 Dataset Summary & Product Engineering Profile
 
-The CCPP dataset includes five continuous variables describing environmental conditions affecting turbine performance. The target variable, net hourly electrical energy output (PE), is predicted using four telemetry inputs:
+The CCPP dataset includes five continuous variables describing environmental conditions affecting turbine performance. The target variable, net hourly electrical energy output (PE), is predicted using four sensor inputs:
 
 - Ambient Temperature (AT)  
 - Exhaust Vacuum (V)  
