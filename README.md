@@ -1,4 +1,4 @@
-<img src="IMG_6655.png" alt="Project Banner" width="100%">
+<img src="assets/IMG_6655.png" alt="Project Banner" width="100%">
 ⚡ Combined Cycle Power Plant Forecasting (Duke MLPM)
 
 My analysis and modeling work for the Duke ML Product Management course using the CCPP dataset. This project demonstrates how machine learning can transform raw environmental telemetry into actionable operational intelligence for energy production teams.
@@ -193,4 +193,4 @@ To maximize real‑time impact and plant reliability, the forecasting framework 
 📄 License
 
 MIT License recommended.
-![CCPP Project — Duke University](assets/duke_footer_badge.png)
+![CCPP Project — Duke University](assets/IMG_6776.png)
