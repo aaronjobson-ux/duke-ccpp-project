@@ -11,6 +11,12 @@ My analysis and modeling work for the Duke ML Product Management course using th
 
 ---
 
+## 🧾 Abstract
+
+This project develops an interpretable machine‑learning forecasting system for predicting hourly electrical output in Combined Cycle Power Plants (CCPP) using ambient environmental telemetry. Applying the ML Product Management framework, the work integrates structured EDA, baseline modeling, and multivariate regression to evaluate how temperature, pressure, humidity, and vacuum influence turbine performance. A regularized Ridge regression model is selected for its balance of predictive accuracy, operational stability, and transparency—key criteria for stakeholder adoption in industrial environments. The model demonstrates measurable improvements over an AT‑only baseline, including reduced RMSE, increased R², and consistent sub‑50ms inference latency suitable for real‑time decision support. SHAP‑based explainability further strengthens operator trust by providing clear, feature‑level reasoning. The results illustrate how an interpretable, low‑latency ML system can enhance production planning, resource allocation, and grid reliability, aligning directly with MLPM objectives of building deployable, stakeholder‑centered machine‑learning products.
+
+---
+
 ## 🌐 Executive Summary
 
 Combined‑cycle power plants experience hourly fluctuations in energy output driven by environmental conditions such as temperature, pressure, humidity, and vacuum. Operators currently respond reactively, often after efficiency has already declined.
