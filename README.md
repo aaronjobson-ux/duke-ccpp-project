@@ -193,3 +193,4 @@ To maximize real‑time impact and plant reliability, the forecasting framework 
 📄 License
 
 MIT License recommended.
+![CCPP Project — Duke University](assets/duke_footer_badge.png)
